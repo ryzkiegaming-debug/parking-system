@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Admin Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-yellow: #ffed4e;
+            --neon-gold: #ffd700;
+            --neon-orange: #ff9500;
+            --phoenix-red: #ff4500;
+            --phoenix-flame: #ff6b35;
+            --dark-bg: #0a0e27;
+            --card-bg: #151932;
+            --card-border: #2a2f4a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 149, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 237, 78, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 69, 0, 0.1) 0%, transparent 50%);
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 237, 78, 0.02) 0px,
+                    transparent 1px,
+                    transparent 40px,
+                    rgba(255, 237, 78, 0.02) 41px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(255, 237, 78, 0.02) 0px,
+                    transparent 1px,
+                    transparent 40px,
+                    rgba(255, 237, 78, 0.02) 41px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            background: rgba(21, 25, 50, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 16px;
+            ,
+                0 8px 32px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            border: 2px solid var(--card-border);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-yellow), var(--neon-orange), var(--phoenix-red));
+            
+        }
+        
+        h2 {
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-orange), var(--phoenix-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            );
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            color: var(--neon-orange);
+            font-size: 14px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        
+        .message-success {
+            background: rgba(255, 237, 78, 0.2);
+            color: var(--neon-yellow);
+            border: 2px solid rgba(255, 237, 78, 0.5);
+            
+        }
+        
+        .message-error {
+            background: rgba(255, 69, 0, 0.2);
+            color: var(--phoenix-red);
+            border: 2px solid rgba(255, 69, 0, 0.5);
+            
+        }
+        
+        form {
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--neon-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 2px solid var(--card-border);
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(10, 14, 39, 0.8);
+            color: #e0e7ff;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--neon-yellow);
+            outline: none;
+            
+            background: rgba(10, 14, 39, 0.95);
+        }
+        
+        input::placeholder {
+            color: #6b7299;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-gold));
+            color: #0a0e27;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        .links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        a {
+            color: var(--neon-orange);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        a:hover {
+            color: var(--neon-yellow);
+            
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔐 Create Admin Account</h2>
+        <p class="subtitle">Admin Access Only</p>
+        
+        {% if message %}
+            <p class="{% if message_type == 'success' %}message-success{% else %}message-error{% endif %}">{{ message }}</p>
+        {% endif %}
+        
+        <form action="{{ url_for('admin_signup') }}" method="POST">
+            <label for="full_name">Full Name:</label>
+            <input type="text" name="full_name" id="full_name" required />
+            
+            <label for="admin_username">Admin Username:</label>
+            <input type="text" name="admin_username" id="admin_username" required />
+            
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required minlength="8" />
+            
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" id="confirm_password" required minlength="8" />
+            
+            <button type="submit">Create Admin Account</button>
+        </form>
+        
+        <div class="links">
+            <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

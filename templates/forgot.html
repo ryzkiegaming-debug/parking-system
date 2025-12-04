@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for mobile responsiveness -->
+    <title>Forgot Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-yellow: #ffed4e;
+            --neon-gold: #ffd700;
+            --neon-orange: #ff9500;
+            --phoenix-red: #ff4500;
+            --phoenix-flame: #ff6b35;
+            --dark-bg: #0a0e27;
+            --card-bg: #151932;
+            --card-border: #2a2f4a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: var(--dark-bg);
+            background-image: 
+                url('https://scontent.fmnl14-1.fna.fbcdn.net/v/t1.15752-9/582154360_696424609854746_4822155147351818655_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFOV01goTPXL00yQmknvRNF0gZooNw6dUjSBmig3Dp1SB-eJpUZAgHq-FHwzrNot9zDIQ2cWG2-8Gseef45Msq8&_nc_ohc=pAgzMjRpA84Q7kNvwF49K83&_nc_oc=Admjg-laB73olTK-2fiz68WFe3IMq-woce0a_cH11_d4MNRy-ys86Lm55CPw_ume6iQ&_nc_zt=23&_nc_ht=scontent.fmnl14-1.fna&oh=03_Q7cD3wGNDXx-wG-cdylf2qhjqJY5OX6r80WGc19JmdDih8aZ9Q&oe=6947AD27'),
+                radial-gradient(circle at 20% 50%, rgba(255, 149, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 237, 78, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 69, 0, 0.2) 0%, transparent 50%);
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay, normal, normal, normal;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 237, 78, 0.02) 0px,
+                    transparent 1px,
+                    transparent 40px,
+                    rgba(255, 237, 78, 0.02) 41px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(255, 237, 78, 0.02) 0px,
+                    transparent 1px,
+                    transparent 40px,
+                    rgba(255, 237, 78, 0.02) 41px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.4);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .container {
+            background: rgba(21, 25, 50, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px 35px;
+            border-radius: 16px;
+            ,
+                0 8px 32px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 2px solid var(--card-border);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-yellow), var(--neon-orange), var(--phoenix-red));
+            
+        }
+        
+        .container::after {
+            content: '🔥';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            font-size: 12rem;
+            opacity: 0.05;
+            animation: phoenixPulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes phoenixPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.05; }
+            50% { transform: scale(1.1) rotate(10deg); opacity: 0.08; }
+        }
+        
+        h2 {
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-orange), var(--phoenix-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            );
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message-success {
+            background: rgba(255, 237, 78, 0.2);
+            color: var(--neon-yellow);
+            border: 2px solid rgba(255, 237, 78, 0.5);
+            
+        }
+        
+        .message-error {
+            background: rgba(255, 69, 0, 0.2);
+            color: var(--phoenix-red);
+            border: 2px solid rgba(255, 69, 0, 0.5);
+            
+        }
+        
+        form {
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 700;
+            color: var(--neon-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            
+        }
+        
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--card-border);
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(10, 14, 39, 0.8);
+            color: #e0e7ff;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--neon-yellow);
+            outline: none;
+            
+            background: rgba(10, 14, 39, 0.95);
+        }
+        
+        input::placeholder {
+            color: #6b7299;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-gold));
+            color: #0a0e27;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        a {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--neon-orange);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        a:hover {
+            color: var(--neon-yellow);
+            
+            text-decoration: none;
+        }
+        
+        .back-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--neon-orange), var(--phoenix-flame));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 12px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            
+        }
+        
+        .back-button:hover::before {
+            left: 100%;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Forgot Password</h2>
+        
+        {% if message %}
+            <p class="{% if message_type == 'success' %}message-success{% else %}message-error{% endif %}">{{ message }}</p>
+        {% endif %}
+        
+        <form action="{{ url_for('forgot_password') }}" method="POST">
+            <label for="email">Enter your Email:</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+            
+            <button type="submit">Reset Password</button>
+        </form>
+        
+        <a href="{{ url_for('login') }}" class="back-button">Back to Login</a>
+    </div>
+    
+
+</body>
+</html>
+

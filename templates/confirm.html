@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-yellow: #ffed4e;
+      --neon-gold: #ffd700;
+      --neon-orange: #ff9500;
+      --phoenix-red: #ff4500;
+      --phoenix-flame: #ff6b35;
+      --dark-bg: #0a0e27;
+      --card-bg: #151932;
+      --card-border: #2a2f4a;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: var(--dark-bg);
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 149, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 237, 78, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 69, 0, 0.1) 0%, transparent 50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 12px;
+      color: #e0e7ff;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 237, 78, 0.03) 0px,
+          transparent 1px,
+          transparent 40px,
+          rgba(255, 237, 78, 0.03) 41px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 237, 78, 0.03) 0px,
+          transparent 1px,
+          transparent 40px,
+          rgba(255, 237, 78, 0.03) 41px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    body::after {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 35rem;
+      opacity: 0.03;
+      z-index: 0;
+      animation: phoenixFloat 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes phoenixFloat {
+      0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.03; }
+      50% { transform: translate(-50%, -55%) scale(1.05) rotate(5deg); opacity: 0.05; }
+    }
+    
+    .card {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(21, 25, 50, 0.95);
+      border-radius: 24px;
+      padding: 48px 56px;
+      ,
+        0 8px 32px rgba(0, 0, 0, 0.6);
+      border: 2px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-yellow), var(--neon-orange), var(--phoenix-red));
+    }
+    
+    .card::after {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      font-size: 20rem;
+      opacity: 0.03;
+      color: var(--neon-yellow);
+      font-weight: 900;
+      animation: checkPulse 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes checkPulse {
+      0%, 100% { transform: scale(1); opacity: 0.03; }
+      50% { transform: scale(1.05); opacity: 0.05; }
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    header img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, var(--neon-yellow), var(--neon-orange), var(--phoenix-red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    
+    p.subtitle {
+      margin: 12px 0 0;
+      color: #c7d2fe;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .detail-card {
+      background: rgba(10, 14, 39, 0.8);
+      border-radius: 16px;
+      padding: 24px;
+      border: 2px solid var(--card-border);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .detail-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon-yellow), var(--neon-orange));
+      opacity: 0.6;
+    }
+    
+    .detail-card:hover {
+      border-color: var(--neon-yellow);
+      
+      transform: translateY(-3px);
+    }
+    
+    .detail-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      color: var(--neon-yellow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .detail-card p {
+      margin: 6px 0;
+      color: #e0e7ff;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    
+    .parking-slot {
+      font-size: 2.2rem;
+      font-weight: 900;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, var(--neon-yellow), var(--neon-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+    
+    .parking-slot div:first-child {
+      font-size: 1rem;
+      color: var(--neon-orange);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .actions {
+      margin-top: 35px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .actions a,
+    .actions button {
+      min-width: 220px;
+      text-align: center;
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-weight: 900;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .actions button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .actions button:hover::before {
+      left: 100%;
+    }
+    
+    .actions a.primary,
+    .actions button.primary {
+      background: linear-gradient(135deg, var(--neon-yellow), var(--neon-gold));
+      color: #0a0e27;
+    }
+    
+    .actions button.primary:hover:not(:disabled) {
+      transform: translateY(-3px);
+    }
+    
+    .actions button.cancel {
+      background: rgba(255, 69, 0, 0.2);
+      color: var(--phoenix-red);
+      border: 2px solid rgba(255, 69, 0, 0.5);
+      
+    }
+    
+    .actions button.cancel:hover:not(:disabled) {
+      background: rgba(255, 69, 0, 0.3);
+      transform: translateY(-3px);
+      
+    }
+    
+    .actions button.cancel:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .actions a.secondary {
+      background: rgba(255, 237, 78, 0.1);
+      color: var(--neon-yellow);
+      border: 2px solid rgba(255, 237, 78, 0.3);
+    }
+    
+    .actions a:hover,
+    .actions button:hover:not(:disabled) {
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+      .card {
+        padding: 32px 24px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .actions a,
+      .actions button {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="Check icon">
+      <h1>Booking Confirmed</h1>
+      <p class="subtitle">Here are the details of your parking reservation.</p>
+    </header>
+
+    <section class="details-grid">
+      <article class="detail-card">
+        <h3>Entry Details</h3>
+        <p>Date: {{ entry_date }}</p>
+        <p>Time: {{ entry_time }}</p>
+      </article>
+      <article class="detail-card">
+        <h3>Exit Details</h3>
+        <p>Date: {{ exit_date }}</p>
+        <p>Time: {{ exit_time }}</p>
+      </article>
+      <article class="detail-card parking-slot">
+        <div>Parking Space</div>
+        <div>{{ selected_space }}</div>
+      </article>
+      <article class="detail-card">
+        <h3>📍 Location</h3>
+        <p>{{ slot_location }}</p>
+      </article>
+    </section>
+
+    <div class="actions">
+      <button onclick="goToDashboard()" class="primary" id="okBtn">View My Dashboard</button>
+      <button onclick="cancelBooking()" class="cancel" id="cancelBtn">Cancel This Booking</button>
+    </div>
+  </div>
+
+  <script>
+    function goToDashboard() {
+      window.location.href = '{{ url_for("user_dashboard") }}';
+    }
+
+    async function cancelBooking() {
+      if (!confirm('Are you sure you want to cancel this booking?')) {
+        return;
+      }
+
+      const bookingId = {{ booking_id }};
+      const cancelBtn = document.getElementById('cancelBtn');
+      
+      // Disable button to prevent double-clicks
+      cancelBtn.disabled = true;
+      cancelBtn.textContent = 'Cancelling...';
+
+      try {
+        const response = await fetch(`/cancel-booking/${bookingId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('✅ Booking cancelled successfully!');
+          window.location.href = '{{ url_for("user_dashboard") }}';
+        } else {
+          alert('❌ Error: ' + (data.error || 'Failed to cancel booking'));
+          cancelBtn.disabled = false;
+          cancelBtn.textContent = 'Cancel This Booking';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Network error. Please try again.');
+        cancelBtn.disabled = false;
+        cancelBtn.textContent = 'Cancel This Booking';
+      }
+    }
+  </script>
+</body>
+</html>
+

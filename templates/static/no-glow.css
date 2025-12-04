@@ -1,0 +1,115 @@
+/* Remove all glowing effects, text shadows, and filters */
+* {
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Remove all box shadows except basic depth shadows */
+*:not(.card):not(.booking-card):not(.stat-card):not(.feature-card):not(.detail-card):not(.login-container):not(.container) {
+  box-shadow: none !important;
+}
+
+/* Keep only basic shadows for depth */
+.card,
+.booking-card,
+.stat-card,
+.feature-card,
+.detail-card,
+.login-container,
+.container {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.card:hover,
+.booking-card:hover,
+.stat-card:hover,
+.feature-card:hover,
+.detail-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Remove glow from buttons */
+button,
+.btn,
+a.btn,
+.btn-tech,
+.btn-yellow,
+.btn-orange,
+.btn-dashboard,
+.btn-back,
+.btn-primary,
+.actions button,
+.actions a {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+button:hover,
+.btn:hover,
+a.btn:hover,
+.btn-tech:hover,
+.btn-yellow:hover,
+.btn-orange:hover,
+.btn-dashboard:hover,
+.btn-back:hover,
+.actions button:hover,
+.actions a:hover {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* Remove glow from badges */
+.badge,
+.badge-active,
+.badge-cancelled,
+.badge-primary {
+  box-shadow: none !important;
+}
+
+/* Remove glow from slots */
+.slot,
+.slot.available,
+.slot.occupied,
+.slot.selected {
+  box-shadow: none !important;
+}
+
+/* Remove glow from card borders and pseudo-elements */
+.card::before,
+.container::before,
+.login-container::before,
+.booking-card::before,
+.detail-card::before,
+.feature-card::before {
+  box-shadow: none !important;
+}
+
+/* Remove glow from headings */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Remove glow from images and icons */
+img,
+header img,
+.actions a img {
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Remove drop-shadow effects */
+a,
+a:hover,
+.parking-slot,
+.parking-slot div {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* Remove status box glows */
+.status-box,
+.error-box {
+  box-shadow: none !important;
+}
